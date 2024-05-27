@@ -1,72 +1,95 @@
 import 'package:flutter/material.dart';
-import 'package:pocket_flutter/page1.dart';
-import 'package:pocket_flutter/page2.dart';
-import 'package:pocket_flutter/page3.dart';
-import 'package:pocket_flutter/page4.dart';
-import 'package:pocket_flutter/page5.dart';
-import 'package:pocket_flutter/typo.dart';
+import 'package:go_router/go_router.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:mobile_bank/pages/add_member.dart';
+import 'package:mobile_bank/pages/dashboard.dart';
+import 'package:mobile_bank/pages/detail_member.dart';
+import 'package:mobile_bank/pages/login.dart';
+import 'package:mobile_bank/pages/register.dart';
+import 'package:mobile_bank/pages/update_member.dart';
+import 'package:mobile_bank/pages/front_page.dart';
+import 'package:mobile_bank/pages/member.dart';
 
-void main() {
-  runApp(const MainApp());
-}
-
-class MainApp extends StatelessWidget {
-  const MainApp({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/', // Mengatur halaman awal (bisa juga menggunakan home)
-      routes: {
-        '/': (context) => HomeScreen(), // Halaman awal
-        '/utama': (context) => Page1(),
-        '/register': (context) => Page2(),
-        '/login': (context) => Page3(),
-        '/home': (context) => Page4(),
-        '/tambahanggota': (context) => Page5(),
+GoRouter _router = GoRouter(routes: [
+  GoRoute(
+      path: "/",
+      builder: (context, state) {
+        return FrontPage();
       },
-    );
-  }
+      routes: [
+        GoRoute(
+            path: "dashboard",
+            builder: (context, state) {
+              return Dashboard();
+            }
+        ),
+        GoRoute(
+            path: "login",
+            builder: (context, state) {
+              return Login();
+            }),
+        GoRoute(
+            path: "register",
+            builder: (context, state) {
+              return Register();
+            }),
+        GoRoute(
+            path: "member",
+            builder: (context, state) {
+              return Member();
+            }),
+        GoRoute(
+            path: "add_member",
+            builder: (context, state) {
+              return AddMember();
+            }),
+        GoRoute(
+            path: "update_member/:id",
+            builder: (context, state){
+              return UpdateMember(user_id: state.pathParameters["id"],);
+            }),
+        GoRoute(
+          path: "member/:id",
+          builder: (context, state) {
+            return DetailMember(user_id: int.parse(state.pathParameters["id"]!),);
+          }
+        )
+      ])
+]);
+
+void main() async {
+  await GetStorage.init();
+  runApp(const MyApp());
 }
 
-class HomeScreen extends StatelessWidget {
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(bottom: 5.0),
-                  child: Image.asset(
-                    'assets/images/LogoPocket.png',
-                    width: 300,
-                    height: 300,
-                  ),
-                ),
-              
-              ],
-            ),
-            Positioned(
-              top: 0,
-              right: 0,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, '/utama'); // Navigasi ke halaman Page1
-                },
-                child: Padding(
-                  padding: EdgeInsets.only(right: 0, top: 50.0),
-                  child: Text('Lanjut', style: teksKembaliLanjut),
-                ),
-              ),
-            ),
-          ],
-        ),
+    return MaterialApp.router(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        // This is the theme of your application.
+        //
+        // TRY THIS: Try running your application with "flutter run". You'll see
+        // the application has a purple toolbar. Then, without quitting the app,
+        // try changing the seedColor in the colorScheme below to Colors.green
+        // and then invoke "hot reload" (save your changes or press the "hot
+        // reload" button in a Flutter-supported IDE, or press "r" if you used
+        // the command line to start the app).
+        //
+        // Notice that the counter didn't reset back to zero; the application
+        // state is not lost during the reload. To reset the state, use hot
+        // restart instead.
+        //
+        // This works for code too, not just values: Most code changes can be
+        // tested with just a hot reload.
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
       ),
+      routerConfig: _router,
     );
   }
 }
