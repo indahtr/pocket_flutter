@@ -1,10 +1,18 @@
 # Project-level configuration.
 cmake_minimum_required(VERSION 3.14)
+<<<<<<< HEAD
 project(tgs1_progmob LANGUAGES CXX)
 
 # The name of the executable created for the application. Change this to change
 # the on-disk name of your application.
 set(BINARY_NAME "tgs1_progmob")
+=======
+project(mobileapp LANGUAGES CXX)
+
+# The name of the executable created for the application. Change this to change
+# the on-disk name of your application.
+set(BINARY_NAME "mobileapp")
+>>>>>>> master
 
 # Explicitly opt in to modern CMake behaviors to avoid warnings with recent
 # versions of CMake.

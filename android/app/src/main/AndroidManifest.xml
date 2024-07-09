@@ -1,7 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<<<<<<< HEAD
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:label="tgs1_progmob"
+=======
+    <application
+        android:label="mobileapp"
+>>>>>>> master
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

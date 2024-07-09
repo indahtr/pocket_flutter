@@ -4,11 +4,20 @@ import 'package:get_storage/get_storage.dart';
 import 'package:mobile_bank/pages/add_member.dart';
 import 'package:mobile_bank/pages/dashboard.dart';
 import 'package:mobile_bank/pages/detail_member.dart';
+<<<<<<< HEAD
+=======
+import 'package:mobile_bank/pages/detail_transaction.dart';
+import 'package:mobile_bank/pages/interest.dart';
+>>>>>>> master
 import 'package:mobile_bank/pages/login.dart';
 import 'package:mobile_bank/pages/register.dart';
 import 'package:mobile_bank/pages/update_member.dart';
 import 'package:mobile_bank/pages/front_page.dart';
 import 'package:mobile_bank/pages/member.dart';
+<<<<<<< HEAD
+=======
+import 'package:mobile_bank/pages/profile.dart';
+>>>>>>> master
 
 GoRouter _router = GoRouter(routes: [
   GoRoute(
@@ -21,8 +30,17 @@ GoRouter _router = GoRouter(routes: [
             path: "dashboard",
             builder: (context, state) {
               return Dashboard();
+<<<<<<< HEAD
             }
         ),
+=======
+            }),
+        GoRoute(
+            path: "profil",
+            builder: (context, state) {
+              return Profil();
+            }),
+>>>>>>> master
         GoRoute(
             path: "login",
             builder: (context, state) {
@@ -45,6 +63,7 @@ GoRouter _router = GoRouter(routes: [
             }),
         GoRoute(
             path: "update_member/:id",
+<<<<<<< HEAD
             builder: (context, state){
               return UpdateMember(user_id: state.pathParameters["id"],);
             }),
@@ -54,6 +73,38 @@ GoRouter _router = GoRouter(routes: [
             return DetailMember(user_id: int.parse(state.pathParameters["id"]!),);
           }
         )
+=======
+            builder: (context, state) {
+              return UpdateMember(
+                user_id: state.pathParameters["id"],
+              );
+            }),
+        GoRoute(
+            path: "member/:id",
+            builder: (context, state) {
+              return DetailMember(
+                user_id: int.parse(state.pathParameters["id"]!),
+              );
+            }),
+        GoRoute(
+            path: "transaction",
+            builder: (context, state) {
+              return Member(
+                transaction: true,
+              );
+            }),
+        GoRoute(
+            path: 'transaction_detail/:id',
+            builder: (context, state) {
+              return DetailTransaction(
+                  user_id: int.parse(state.pathParameters['id']!));
+            }),
+        GoRoute(
+            path: 'interest',
+            builder: (context, state){
+              return Interest();
+            })
+>>>>>>> master
       ])
 ]);
 
@@ -92,4 +143,8 @@ class MyApp extends StatelessWidget {
       routerConfig: _router,
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> master

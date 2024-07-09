@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
     "name": "tgs1_progmob",
     "short_name": "tgs1_progmob",
+=======
+    "name": "mobileapp",
+    "short_name": "mobileapp",
+>>>>>>> master
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
